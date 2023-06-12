@@ -1,7 +1,7 @@
 .theme-toggler {
   display: flex;
   align-items: center;
-  gap: 2px;
+  gap: 3px;
   width: fit-content;
 
   img {
@@ -14,15 +14,20 @@
     display: flex;
     align-items: center;
     // justify-content: flex-end;
-    background-color: lightgrey;
+    background-color: rgb(173, 173, 173);
     border-radius: 30px;
+
+    &:hover {
+      cursor: pointer;
+    }
 
     div {
       background-color: white;
       height: 25px;
-      width: 50%;
+      width: calc(50% - 2px);
       margin-right: 2px;
       margin-left: 2px;
+      box-shadow: 1px 1px 4px #2b2b2bbb;
     }
   }
 }
