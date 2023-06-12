@@ -68,6 +68,10 @@ section {
 
   img {
     width: 25px;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   input {
@@ -115,7 +119,11 @@ section {
 
       li {
         list-style: none;
-        line-height: 25px;
+        line-height: 30px;
+
+        &:hover {
+          cursor: pointer;
+        }
       }
     }
   }
