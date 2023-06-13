@@ -21,7 +21,7 @@ const CountryCard : React.FC<CountryInterface> = ({ country }) => {
 
   return (
     <div className="country-card" onClick={navigateToDetailedDesc}>
-      {/* <img src={country.flags.png}/> */}
+      <img src={country.flags.png}/>
       <div>
         <h2>{country.name.common}</h2>
         <p><span>Population: </span>{formatNumberWithCommas()}</p>

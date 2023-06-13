@@ -42,7 +42,7 @@ section {
 
 .max-width {
   width: 85%;
-  max-width: 1000px;
+  max-width: 1350px;
 }
 
 .search-filter {
@@ -134,4 +134,36 @@ section {
   flex-direction: column;
   align-items: center;
   gap: 40px;
+}
+
+@media only screen and (min-width: 700px) {
+  .search-filter {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0;
+  }
+
+  .dropdown-menu {
+    width: 200px;
+  }
+
+  .search-bar {
+    max-width: 400px;
+  }
+
+  .country-cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 300px);
+    justify-content: center;
+    align-content: center;
+  }
+
+  .max-width {
+    width: 100%;
+  }
+
+  section {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 }
