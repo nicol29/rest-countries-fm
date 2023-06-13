@@ -1,0 +1,59 @@
+* {
+  color: white;
+}
+
+header,
+.search-bar,
+.dropdown-menu,
+.country-card,
+.options,
+.dropdown-menu .options {
+  background-color: hsl(209, 23%, 22%);
+  box-shadow: 0px 1px 5px #1313136a;
+}
+
+.search-bar input {
+  background-color: hsl(209, 23%, 22%);
+  
+  &::placeholder {
+    color: white;
+  }
+}
+
+section {
+  background-color: hsl(207, 26%, 17%);
+}
+
+.theme-toggler {
+  .switch {
+    background-color: hsl(210, 28%, 14%);
+    justify-content: flex-end;
+    
+    div {
+      box-shadow: 0px 1px 5px #000000;
+    }
+  }
+}
+
+.link {
+  color: white;
+}
+
+.bordering-countries {
+  a {
+    div {
+      background-color: hsl(209, 23%, 22%);
+      box-shadow: 0px 1px 5px #1313136a;
+    }
+  }
+}
+
+.back-button {
+  background-color: hsl(209, 23%, 22%);
+  box-shadow: 0px 1px 5px #0000006a;
+}
+
+.bordering-countries div:active,
+.back-button:focus {
+  background-color: hsl(209, 27%, 21%);
+}

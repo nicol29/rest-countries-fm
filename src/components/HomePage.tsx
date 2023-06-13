@@ -4,10 +4,12 @@ import CountryCard from "./CountryCard";
 import searchLight from "../assets/images/icons/light/magnify-custom.png";
 import chevronLight from "../assets/images/icons/light/chevron-down-custom.png";
 import uniqid from 'uniqid';
+// import "../styles/light/app.scss";
 
 
 const HomePage = () => {
   const [countries, setCountries] = useState([]);
+  const [test, setTest] = useState(false);
   const [filterToggle, setFilterToggle] = useState(false);
   const [input, setInput] = useState("");
   const dropDownOptions = useRef<HTMLDivElement | null>(null);
@@ -50,7 +52,7 @@ const HomePage = () => {
 
   return (
     <>
-      <header>
+      <header onClick={() => setTest(!test)}>
         <h1>Where in the world?</h1>
         <ThemeToggler />
       </header>
@@ -83,9 +85,9 @@ const HomePage = () => {
             </div>
           </div>
           <div className="country-cards-container">
-            {countries.map(country => (
-              <CountryCard country={country} key={uniqid()}/>
-            ))}
+            {countries.length > 0 ? countries.map(country => <CountryCard country={country} key={uniqid()}/>) 
+            : <p>No Country Found</p>
+            }
           </div>
         </div>
       </section>

@@ -1,4 +1,3 @@
-import "./styles/light/app.scss";
 import { Routes, Route } from 'react-router-dom';
 import HomePage from "./components/HomePage";
 import DisplayPage from "./components/DisplayPage";
