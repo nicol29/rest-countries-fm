@@ -105,14 +105,11 @@ section {
   color: white;
 }
 
-.bordering-countries {
-  a {
-    div {
-      background-color: hsl(209, 23%, 22%);
-      box-shadow: 0px 1px 5px #1313136a;
-    }
-  }
+.bordering-countries div {
+  background-color: hsl(209, 23%, 22%);
+  box-shadow: 0px 1px 5px #1313136a;
 }
+
 
 .back-button {
   background-color: hsl(209, 23%, 22%);
