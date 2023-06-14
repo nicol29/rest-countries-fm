@@ -1,10 +1,12 @@
 import ThemeToggler from "./ThemeToggler";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router";
 import "../styles/light/displayPage.scss";
-import backArrowLight from "../assets/images/icons/light/keyboard-backspace-custom.png";
+import backArrowLight from "@icons/light/keyboard-backspace-custom.png";
+import backArrowDark from "@icons/dark/keyboard-backspace-custom.png";
 import uniqid from "uniqid";
 import { Link } from "react-router-dom";
+import { ThemeContext } from "../contexts/themeProvider";
 
 interface BorderingCountriesInterface {
   countries: string[] | null;
@@ -17,6 +19,7 @@ const DisplayPage : React.FC = () => {
   };
   const [country, setCountry] = useState<any>(null);
   const [borderingCountries, setBorderingCountries] = useState<BorderingCountriesInterface>(initialBorderingCountries);
+  const { darkTheme, setDarkTheme } = useContext(ThemeContext);
   const { id } = useParams();
 
 
@@ -47,10 +50,12 @@ const DisplayPage : React.FC = () => {
   }
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+
     (async () => {
       const res = await fetch(`https://restcountries.com/v3.1/name/${id}`);
       const data = await res.json();
-      console.log(data[0])
+      
       setCountry(data[0]);
     })()
   }, [id]);
@@ -61,11 +66,8 @@ const DisplayPage : React.FC = () => {
         const allBordingCountries = await Promise.all(country.borders.map(async border => {
           const res = await fetch(`https://restcountries.com/v3.1/alpha?codes=${border}`);
           const country = await res.json();
-    
-          if (country && country.length > 0) {
-            return country[0].name.common;
-          }
-          return null;
+
+          return country[0].name.common;
         }));
 
         const borderingCountriesData: BorderingCountriesInterface = {
@@ -89,11 +91,11 @@ const DisplayPage : React.FC = () => {
         <div className="max-width">
           <Link to="/" className="link" style={{ display: 'inline-block' }}>
             <button className="back-button">
-              <img src={backArrowLight}/>
+              <img src={darkTheme ? backArrowDark : backArrowLight}/>
               Back
             </button>
           </Link>
-          { country &&
+          { country ?
             <article className="country-details">
               <img src={country?.flags.png}/>
               <div>
@@ -112,22 +114,22 @@ const DisplayPage : React.FC = () => {
                     <p><span>Languages: </span>{getLanguages()}</p>
                   </div>
                 </div>
-                <div>
-                  <h3>Border Countries:</h3>
                   {borderingCountries?.countries && 
-                    <div className="bordering-countries">
-                      {borderingCountries?.countries.map(country => (
-                        <Link to={`/countries/${country}`} key={uniqid()} className="link">
-                          <div>
-                            {country}
-                          </div>
-                        </Link>
-                      ))}
+                    <div>
+                      <h3>Border Countries:</h3>
+                      <div className="bordering-countries">
+                        {borderingCountries?.countries.map(country => (
+                          <Link to={`/countries/${country}`} key={uniqid()} className="link">
+                            <div>
+                              {country}
+                            </div>
+                          </Link>
+                        ))}
+                      </div>
                     </div>
                   }
-                </div>
               </div>
-            </article>
+            </article> : <p style={{marginTop: "50px"}}>No country with the name {`"${id}"`} found</p>
           }
         </div>
       </section>

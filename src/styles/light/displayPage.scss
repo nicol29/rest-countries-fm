@@ -30,7 +30,7 @@
 }
 
 .country-details {
-  margin-top: 60px;
+  margin-top: 40px;
   margin-bottom: 50px;
 
   img {
@@ -76,6 +76,7 @@
   .country-details {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 150px;
     margin-top: 0px;
 
@@ -94,5 +95,9 @@
 
   .bordering-countries {
     grid-template-columns: repeat(auto-fill, 120px);
+  }
+
+  .back-button {
+    margin-bottom: 50px;
   }
 }

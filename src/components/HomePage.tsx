@@ -1,17 +1,19 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
 import ThemeToggler from "./ThemeToggler";
 import CountryCard from "./CountryCard";
-import searchLight from "../assets/images/icons/light/magnify-custom.png";
-import chevronLight from "../assets/images/icons/light/chevron-down-custom.png";
+import searchLight from "@icons/light/magnify-custom.png";
+import searchDark from "@icons/dark/magnify-custom.png";
+import chevronLight from "@icons/light/chevron-down-custom.png";
+import chevronDark from "@icons/dark/chevron-down-custom.png";
 import uniqid from 'uniqid';
-// import "../styles/light/app.scss";
+import { ThemeContext } from "../contexts/themeProvider";
 
 
 const HomePage = () => {
   const [countries, setCountries] = useState([]);
-  const [test, setTest] = useState(false);
   const [filterToggle, setFilterToggle] = useState(false);
   const [input, setInput] = useState("");
+  const { darkTheme, setDarkTheme } = useContext(ThemeContext);
   const dropDownOptions = useRef<HTMLDivElement | null>(null);
 
   const searchForFilter = async (continent: string) => {
@@ -52,7 +54,7 @@ const HomePage = () => {
 
   return (
     <>
-      <header onClick={() => setTest(!test)}>
+      <header>
         <h1>Where in the world?</h1>
         <ThemeToggler />
       </header>
@@ -60,7 +62,8 @@ const HomePage = () => {
         <div className="max-width">
           <div className="search-filter">
             <div className="search-bar">
-              <img src={searchLight} onClick={() => searchForCountry()}/>
+              <img src={darkTheme ? searchDark : searchLight} 
+              onClick={() => searchForCountry()}/>
               <input 
                 type="text" 
                 placeholder="Search for a country..." 
@@ -72,7 +75,7 @@ const HomePage = () => {
             </div>
             <div className="dropdown-menu" onClick={() => setFilterToggle(!filterToggle)}>
               <p>Filter by Region</p>
-              <img src={chevronLight}/>
+              <img src={darkTheme ? chevronDark : chevronLight}/>
               <div className="options" ref={dropDownOptions}>
                 <ul>
                   <li onClick={() => searchForFilter("Africa")}>Africa</li>

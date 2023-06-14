@@ -5,7 +5,12 @@
   width: fit-content;
 
   img {
-    height: 25px;
+    &:first-of-type {
+      height: 29px;
+    }
+    &:last-of-type {
+      height: 25px;
+    }
   }
 
   div {
