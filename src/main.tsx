@@ -6,7 +6,7 @@ import { ThemeProvider } from './contexts/themeProvider';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <ThemeProvider>
-    <BrowserRouter>
+    <BrowserRouter basename="/rest-countries-fm">
       <React.StrictMode>
         <App />
       </React.StrictMode>
