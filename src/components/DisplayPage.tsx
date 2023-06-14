@@ -19,7 +19,7 @@ const DisplayPage : React.FC = () => {
   };
   const [country, setCountry] = useState<any>(null);
   const [borderingCountries, setBorderingCountries] = useState<BorderingCountriesInterface>(initialBorderingCountries);
-  const { darkTheme, setDarkTheme } = useContext(ThemeContext);
+  const { darkTheme } = useContext(ThemeContext);
   const { id } = useParams();
 
 
@@ -63,7 +63,7 @@ const DisplayPage : React.FC = () => {
   useEffect(() => {
     if (country?.borders) {
       (async () => {
-        const allBordingCountries = await Promise.all(country.borders.map(async border => {
+        const allBordingCountries = await Promise.all(country.borders.map(async (border: string) => {
           const res = await fetch(`https://restcountries.com/v3.1/alpha?codes=${border}`);
           const country = await res.json();
 

@@ -13,7 +13,7 @@ const HomePage = () => {
   const [countries, setCountries] = useState([]);
   const [filterToggle, setFilterToggle] = useState(false);
   const [input, setInput] = useState("");
-  const { darkTheme, setDarkTheme } = useContext(ThemeContext);
+  const { darkTheme } = useContext(ThemeContext);
   const dropDownOptions = useRef<HTMLDivElement | null>(null);
 
   const searchForFilter = async (continent: string) => {
