@@ -6,23 +6,29 @@ import { ThemeContext } from "../contexts/themeProvider";
 import { useContext, useEffect } from "react";
 import "../styles/light/app.scss";
 import "../styles/light/themeToggler.scss";
+import darkCSS from "../styles/dark/app.scss?raw";
 
 const ThemeToggler = () => {
   const { darkTheme, setDarkTheme } = useContext(ThemeContext);
 
   useEffect(() => {
+    const darkStyleSheet = document.getElementById("dark-stylesheet");
+
     if (darkTheme) {
       localStorage.setItem("isDarkTheme", JSON.stringify(darkTheme));
 
-      if (document.styleSheets[4]) {
-        document.styleSheets[4].disabled = false;
-      } else {
-        import("../styles/dark/app.scss");
+      const styleTag = document.createElement("style");
+
+      if (!darkStyleSheet) {
+        styleTag.id = "dark-stylesheet";
+        styleTag.innerHTML = darkCSS;
+
+        document.head.appendChild(styleTag);
       }
     } else {
       localStorage.setItem("isDarkTheme", JSON.stringify(darkTheme));
 
-      if (document.styleSheets[4]) document.styleSheets[4].disabled = true;
+      if (darkStyleSheet) darkStyleSheet.parentNode?.removeChild(darkStyleSheet);
     }
   }, [darkTheme]);
 
